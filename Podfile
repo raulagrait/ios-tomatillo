@@ -3,6 +3,7 @@
 
 target 'Tomatillo' do
    pod "AFNetworking"
+   pod "SVProgressHud"
 end
 
 target 'TomatilloTests' do

@@ -17,6 +17,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.hidden = true
+        SVProgressHUD.show()
+        
         let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=dagqdghwaq3e3mxyrp7kmmj5&limit=20&country=US")!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
@@ -24,7 +27,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if let json = json {
                 self.movies = json["movies"] as? [NSDictionary]
                 self.tableView.reloadData()
+                self.tableView.hidden = false
             }
+            SVProgressHUD.dismiss()
         }
         
         tableView.delegate = self

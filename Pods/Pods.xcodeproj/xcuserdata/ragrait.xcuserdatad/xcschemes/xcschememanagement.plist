@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Tomatillo-SVProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Tomatillo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>C47423BEDDC7B4B94DF06D47</key>
+		<key>684021A34D81BC389F64654E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E6F966336DB7BD334970C321</key>
+		<key>8755308A161E22AE8D71AB1E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>91ED9920A9D121B37E4F26AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
