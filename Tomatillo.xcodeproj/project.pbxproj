@@ -14,6 +14,7 @@
 		550C5E471ADF1FE6008AC101 /* TomatilloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550C5E461ADF1FE6008AC101 /* TomatilloTests.swift */; };
 		550C5E541ADF2500008AC101 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550C5E531ADF2500008AC101 /* MoviesViewController.swift */; };
 		5535E5D21ADF392600A8355C /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535E5D11ADF392600A8355C /* MovieCell.swift */; };
+		5535E5D71ADF778900A8355C /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535E5D61ADF778900A8355C /* MovieDetailsViewController.swift */; };
 		68B25A300D194210E42D3999 /* libPods-Tomatillo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B94C799884F5F207EEFE8D93 /* libPods-Tomatillo.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		550C5E531ADF2500008AC101 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		5535E5D11ADF392600A8355C /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		5535E5D31ADF431C00A8355C /* Tomatillo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tomatillo-Bridging-Header.h"; sourceTree = "<group>"; };
+		5535E5D61ADF778900A8355C /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		B94C799884F5F207EEFE8D93 /* libPods-Tomatillo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tomatillo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				550C5E531ADF2500008AC101 /* MoviesViewController.swift */,
+				5535E5D61ADF778900A8355C /* MovieDetailsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5535E5D71ADF778900A8355C /* MovieDetailsViewController.swift in Sources */,
 				550C5E311ADF1FE6008AC101 /* AppDelegate.swift in Sources */,
 				550C5E541ADF2500008AC101 /* MoviesViewController.swift in Sources */,
 				5535E5D21ADF392600A8355C /* MovieCell.swift in Sources */,
