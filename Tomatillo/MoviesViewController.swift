@@ -11,24 +11,36 @@ import UIKit
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var errorView: UIView!
     
     var movies: [NSDictionary]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // I tried for way too long to try to do this in IB
+        view.bringSubviewToFront(self.errorView)
+        
         tableView.hidden = true
         SVProgressHUD.show()
         
         let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=dagqdghwaq3e3mxyrp7kmmj5&limit=20&country=US")!
-        let request = NSURLRequest(URL: url)
+        var timeoutInterval = 60.0 // 0.1
+        let request = NSURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: timeoutInterval)
+        
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            if (error != nil) {
+                self.errorView.hidden = false
+            } else {
             let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-            if let json = json {
-                self.movies = json["movies"] as? [NSDictionary]
-                self.tableView.reloadData()
-                self.tableView.hidden = false
+                
+                self.errorView.hidden = true
+                if let json = json {
+                    self.movies = json["movies"] as? [NSDictionary]
+                    self.tableView.reloadData()
+                }
             }
+            self.tableView.hidden = false
             SVProgressHUD.dismiss()
         }
         
