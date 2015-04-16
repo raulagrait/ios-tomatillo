@@ -51,6 +51,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.synopsisLabel.text = movie["synopsis"] as? String
         
         let url = NSURL(string: movie.valueForKeyPath("posters.thumbnail") as! String)!
+        cell.posterImageView.setImageWithURL(url)
         
         return cell
     }
