@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7CA9A78F-B249-493F-9A1E-E96C9E06F036</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>88CA207083F51FDF7FC7B54D5FA17ED4C7FDBC1A</key>
+		<string>github.com:raulagrait/ios-tomatillo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tomatillo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>88CA207083F51FDF7FC7B54D5FA17ED4C7FDBC1A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:raulagrait/ios-tomatillo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>88CA207083F51FDF7FC7B54D5FA17ED4C7FDBC1A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>88CA207083F51FDF7FC7B54D5FA17ED4C7FDBC1A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-tomatillo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
