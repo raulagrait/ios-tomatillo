@@ -72,12 +72,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" id="TxT-M0-gkc">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Box Office" image="box-office-normal.png" id="yiF-bK-czi"/>
+                                    <tabBarItem tag="1" title="DVD" image="dvd-normal.png" id="hTg-VO-W3Q"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="Dom-bS-ARy"/>
                     <connections>
                         <outlet property="errorView" destination="I9M-Uf-EnS" id="vX7-0e-lS4"/>
+                        <outlet property="tabBar" destination="TxT-M0-gkc" id="8To-XI-Jjw"/>
                         <outlet property="tableView" destination="qis-vJ-hCb" id="hhX-jV-uah"/>
                     </connections>
                 </viewController>
@@ -152,6 +162,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="box-office-normal.png" width="30" height="30"/>
+        <image name="dvd-normal.png" width="30" height="30"/>
         <image name="iconmonstr-warning-5-icon-256.png" width="256" height="256"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
