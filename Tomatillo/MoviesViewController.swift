@@ -14,6 +14,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var errorView: UIView!
     
     var movies: [NSDictionary]?
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.hidden = true
         SVProgressHUD.show()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        loadMovies({
+            self.tableView.hidden = false
+            SVProgressHUD.dismiss()
+        })
+    }
+    
+    func loadMovies(callback: () -> Void) {
         let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=dagqdghwaq3e3mxyrp7kmmj5&limit=20&country=US")!
         var timeoutInterval = 60.0 // 0.1
         let request = NSURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: timeoutInterval)
@@ -32,20 +47,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if (error != nil) {
                 self.errorView.hidden = false
             } else {
-            let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-                
+                let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionaryxw
                 self.errorView.hidden = true
                 if let json = json {
                     self.movies = json["movies"] as? [NSDictionary]
                     self.tableView.reloadData()
+                    
                 }
             }
-            self.tableView.hidden = false
-            SVProgressHUD.dismiss()
+            callback()
         }
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +87,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func onRefresh() {
+        println("we got refreshed")
+        
+        loadMovies({
+            self.refreshControl.endRefreshing()
+        })
     }
 
     // MARK: - Navigation
