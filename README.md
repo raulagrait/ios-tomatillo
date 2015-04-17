@@ -1,5 +1,5 @@
 ## Tomatillo
-Homework assignment for CodePath class on Swift / UIKit
+Homework assignment for CodePath class on Swift / UIKit.
 This is a movies app displaying box office and top rental DVDs using the [Rotten Tomatoes API](http://developer.rottentomatoes.com/docs/read/JSON).
 
 Time spent: `8 hours`
@@ -17,7 +17,8 @@ Time spent: `8 hours`
 #### Optional
 
 - [x] All images fade in.
-- [ ] For the larger poster, load the low-res first and switch to high-res when complete.
+- [x] For the larger poster, load the low-res first and switch to high-res when complete.
+- [ ] Implement segmented control to switch between list view and grid view.
 - [ ] All images should be cached in memory and disk: AppDelegate has an instance of `NSURLCache` and `NSURLRequest` makes a request with `NSURLRequestReturnCacheDataElseLoad` cache policy. I tested it by turning off wifi and restarting the app.
 - [ ] Customize the highlight and selection effect of the cell.
 - [ ] Customize the navigation bar.
