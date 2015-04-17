@@ -99,8 +99,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.synopsisLabel.text = movie["synopsis"] as? String
         
         let url = NSURL(string: movie.valueForKeyPath("posters.thumbnail") as! String)!
-        cell.posterImageView.setImageWithURL(url)
-        
+        var urlRequest = NSURLRequest(URL: url)
+        cell.posterImageView.image = nil
+
+        cell.posterImageView.setImageWithURLRequest(urlRequest, placeholderImage: nil, success: { (request: NSURLRequest!, response: NSURLResponse!, image: UIImage!) -> Void in
+            
+            let fromCache = (request == nil)
+            if (fromCache) {
+                cell.posterImageView.image = image
+            } else {
+                UIView.transitionWithView(cell.posterImageView, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                    cell.posterImageView.image = image
+                }, completion: nil)
+            }
+            
+        }, failure: nil)
         return cell
     }
     
