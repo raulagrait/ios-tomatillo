@@ -16,26 +16,59 @@ class MovieDetailsViewController: UIViewController {
     
     var movie: NSDictionary!
     
+    var lowResUrlString: String {
+        return movie.valueForKeyPath("posters.thumbnail") as! String
+    }
+    
+    var highResUrlString: String {
+        var urlString = lowResUrlString
+        var range = urlString.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
+        if let range = range {
+            urlString = urlString.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
+        }
+        return urlString
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         titleLabel.text = movie["title"] as? String
         synopsisLabel.text = movie["synopsis"] as? String
-
-        var urlString = movie.valueForKeyPath("posters.thumbnail") as! String
-        var range = urlString.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
-        if let range = range {
-            urlString = urlString.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
-        }
-        let url = NSURL(string: urlString)
-        backgroundImageView.setImageWithURL(url)
+        loadLowResImage()
     }
+    
+    func loadLowResImage() {
+        let urlString = lowResUrlString
+        loadImage(urlString, callback: {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.loadHighResImage()
+            })
+        })
+    }
+    
+    func loadHighResImage() {
+        let urlString = highResUrlString
+        loadImage(urlString, callback: {})
+    }
+    
+    func loadImage(urlString: String, callback: () -> Void) {
+        let url = NSURL(string: urlString)!
+        let urlRequest = NSURLRequest(URL: url)
 
+        self.backgroundImageView.setImageWithURLRequest(urlRequest, placeholderImage: nil,
+            success: { (request: NSURLRequest!, response: NSURLResponse!, image: UIImage!) -> Void in
+                self.backgroundImageView.image = image
+                callback()
+            },
+            failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
+                println(error)
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
