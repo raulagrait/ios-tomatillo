@@ -8,14 +8,27 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var tabBar: UITabBar!
-    var movies: [NSDictionary]?
+    
+    var movies: [NSDictionary]? {
+        didSet {
+            var searchText = searchBar.text
+            filterMovies(searchText)
+        }
+    }
+    var filteredMovies: [NSDictionary]?
+    
     var refreshControl: UIRefreshControl!
     var loadBoxOffice: Bool = true
+    
+    var isFiltering: Bool {
+        return !searchBar.text.isEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +39,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
+        searchBar.delegate = self
+        
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items![0] as? UITabBarItem
+        
+        view.bringSubviewToFront(searchBar)
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
@@ -54,6 +71,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
         loadBoxOffice = (item.tag == 0)
+        searchBar.text = ""
         load()
     }
     
@@ -85,16 +103,30 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering, let filteredMovies = filteredMovies {
+            return filteredMovies.count
+        }
+        
         if let movies = movies {
             return movies.count
         }
         return 0
     }
+    
+    func getMovie(atIndex: Int) -> NSDictionary? {
+        if isFiltering, let filteredMovies = filteredMovies {
+            return filteredMovies[atIndex]
+        } else if let movies = movies {
+            return movies[atIndex]
+        }
+        return nil
+    }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+
+        let movie = getMovie(indexPath.row)!
         
-        let movie = movies![indexPath.row]
         cell.titleLabel.text = movie["title"] as? String
         cell.synopsisLabel.text = movie["synopsis"] as? String
         
@@ -124,6 +156,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func onRefresh() {
         reload()
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filterMovies(searchText)
+    }
+    
+    func filterMovies(searchText: String) {
+        filteredMovies = movies?.filter({ (movie) -> Bool in
+            if let title = movie["title"] as? String {
+                if let range = title.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) {
+                    return true
+                }
+            }
+            return false
+        })
+        tableView.reloadData()
+    }
 
     // MARK: - Navigation
 
@@ -131,8 +179,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!
+        let movie = getMovie(indexPath.row)
         
-        let movie = movies![indexPath.row]
         let movieDetailsViewController = segue.destinationViewController as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
     }
