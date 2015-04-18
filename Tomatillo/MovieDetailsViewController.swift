@@ -8,13 +8,16 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var synopsisLabel: UILabel!
     
     var movie: NSDictionary!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    var initialScrollY: CGFloat = 0.0
     
     var lowResUrlString: String {
         return movie.valueForKeyPath("posters.thumbnail") as! String
@@ -35,6 +38,20 @@ class MovieDetailsViewController: UIViewController {
         titleLabel.text = movie["title"] as? String
         synopsisLabel.text = movie["synopsis"] as? String
         loadLowResImage()
+        
+        var margin = titleLabel.frame.minX
+        var titleHeight = titleLabel.frame.height
+        
+        var synopsisFrame = synopsisLabel.frame
+        synopsisLabel.frame = CGRect(x: synopsisFrame.minX, y: synopsisFrame.minY, width: synopsisFrame.width, height: 0)
+        synopsisLabel.sizeToFit()
+        var synopsisHeight = synopsisLabel.frame.height
+        var contentHeight = margin + titleHeight + margin + synopsisHeight + margin
+        scrollView.contentSize.height = contentHeight
+        
+        scrollView.delegate = self
+        scrollView.clipsToBounds = true
+        initialScrollY = scrollView.frame.minY
     }
     
     func loadLowResImage() {

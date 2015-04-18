@@ -112,10 +112,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c96-PQ-m1W">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" id="Iah-7k-P0h">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" id="Iah-7k-P0h" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="264" width="320" height="304"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -127,7 +127,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZHT-an-dRQ">
-                                        <rect key="frame" x="25" y="60" width="269" height="224"/>
+                                        <rect key="frame" x="13" y="63" width="269" height="224"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -142,6 +142,7 @@
                     <navigationItem key="navigationItem" id="wfb-lQ-rRI"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="c96-PQ-m1W" id="u0n-d2-FyX"/>
+                        <outlet property="scrollView" destination="Iah-7k-P0h" id="7nc-Fw-jYh"/>
                         <outlet property="synopsisLabel" destination="ZHT-an-dRQ" id="JPe-4u-ajL"/>
                         <outlet property="titleLabel" destination="gXw-tA-vlz" id="JVF-du-X6L"/>
                     </connections>
