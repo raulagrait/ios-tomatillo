@@ -2,7 +2,7 @@
 Homework assignment for CodePath class on Swift / UIKit.
 This is a movies app displaying box office and top rental DVDs using the [Rotten Tomatoes API](http://developer.rottentomatoes.com/docs/read/JSON).
 
-Time spent: `9 hours`
+Time spent: `10 hours`
 
 ### Features
 
@@ -21,7 +21,7 @@ Time spent: `9 hours`
 - [x] All images fade in.
 - [x] Add a search bar: pretty simple implementation of searching against the existing table view data.
 - [x] For the larger poster, load the low-res first and switch to high-res when complete.
-- [ ] Customize the highlight and selection effect of the cell.
+- [x] Customize the highlight and selection effect of the cell.
 - [x] Customize the navigation bar.
 
 
