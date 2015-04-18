@@ -30,20 +30,31 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return !searchBar.text.isEmpty
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        setNeedsStatusBarAppearanceUpdate()
+        
+        navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor() ]
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
         // I tried for way too long to try to do this in IB
         view.bringSubviewToFront(self.errorView)
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        searchBar.delegate = self
-        
+
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items![0] as? UITabBarItem
+        UITabBar.appearance().tintColor = UIColor.redColor()
         
+        
+        searchBar.delegate = self        
         view.bringSubviewToFront(searchBar)
         
         refreshControl = UIRefreshControl()

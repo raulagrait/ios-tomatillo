@@ -22,7 +22,7 @@ Time spent: `9 hours`
 - [x] Add a search bar: pretty simple implementation of searching against the existing table view data.
 - [x] For the larger poster, load the low-res first and switch to high-res when complete.
 - [ ] Customize the highlight and selection effect of the cell.
-- [ ] Customize the navigation bar.
+- [x] Customize the navigation bar.
 
 
 ### Walkthrough
