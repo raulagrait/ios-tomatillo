@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
+        <!--Tomatillo-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MoviesViewController" customModule="Tomatillo" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,7 +91,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movies" id="Dom-bS-ARy"/>
+                    <navigationItem key="navigationItem" title="Tomatillo" id="Dom-bS-ARy">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="8kA-1o-ObZ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="errorView" destination="I9M-Uf-EnS" id="vX7-0e-lS4"/>
                         <outlet property="searchBar" destination="Z6w-2d-eKh" id="ptu-8F-T3l"/>

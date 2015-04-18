@@ -34,8 +34,11 @@ class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var movieTitle = movie["title"] as? String
+        navigationItem.title = movieTitle
 
-        titleLabel.text = movie["title"] as? String
+        titleLabel.text = movieTitle
         synopsisLabel.text = movie["synopsis"] as? String
         loadLowResImage()
         
