@@ -47,7 +47,7 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
         // I tried for way too long to try to do this in IB
         view.bringSubviewToFront(self.errorView)
         
-        tableViewDataSource = MoviesTableViewDataSource()        
+        tableViewDataSource = MoviesTableViewDataSource()
         tableView.dataSource = tableViewDataSource
         
         tableViewDelegate = MoviesTableViewDelegate()

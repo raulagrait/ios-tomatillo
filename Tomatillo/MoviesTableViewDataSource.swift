@@ -9,48 +9,10 @@
 import Foundation
 import UIKit
 
-class MoviesTableViewDataSource: NSObject, UITableViewDataSource {
-    
-    var searchText: String = ""
-    private var isFiltering: Bool {
-        return !searchText.isEmpty
-    }
-    
-    var filteredMovies: [NSDictionary]?
-    var movies: [NSDictionary]?
-    
-    func getMovie(atIndex: Int) -> NSDictionary? {
-        if isFiltering, let filteredMovies = filteredMovies {
-            return filteredMovies[atIndex]
-        } else if let movies = movies {
-            return movies[atIndex]
-        }
-        return nil
-    }
-    
-    func filterMovies(callback: () -> Void) {
-        filteredMovies = movies?.filter({ (movie) -> Bool in
-            if let title = movie["title"] as? String {
-                if let range = title.rangeOfString(self.searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) {
-                    return true
-                }
-            }
-            return false
-        })
-        callback()
-    }
-    
-    // MARK: UITableViewDataSource
+class MoviesTableViewDataSource: BaseMoviesDataSource, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering, let filteredMovies = filteredMovies {
-            return filteredMovies.count
-        }
-        
-        if let movies = movies {
-            return movies.count
-        }
-        return 0
+        return getMovieCount()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
