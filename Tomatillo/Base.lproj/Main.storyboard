@@ -19,7 +19,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" id="I9M-Uf-EnS">
-                                <rect key="frame" x="0.0" y="64" width="320" height="43"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-warning-5-icon-256.png" id="2hQ-qa-ogI">

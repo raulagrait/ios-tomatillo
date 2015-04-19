@@ -8,28 +8,30 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, UISearchBarDelegate {
+class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var tabBar: UITabBar!
     
+    var tableViewDataSource: MoviesTableViewDataSource?
+    
     var movies: [NSDictionary]? {
         didSet {
-            var searchText = searchBar.text
-            filterMovies(searchText)
+            tableViewDataSource?.movies = movies
         }
     }
-    var filteredMovies: [NSDictionary]?
+
+    var filteredMovies: [NSDictionary]? {
+        didSet {
+            tableViewDataSource?.filteredMovies = filteredMovies
+        }
+    }
     
     var refreshControl: UIRefreshControl!
     var loadBoxOffice: Bool = true
-    
-    var isFiltering: Bool {
-        return !searchBar.text.isEmpty
-    }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -46,13 +48,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // I tried for way too long to try to do this in IB
         view.bringSubviewToFront(self.errorView)
         
+        tableViewDataSource = MoviesTableViewDataSource()
         tableView.delegate = self
-        tableView.dataSource = self
-
+        tableView.dataSource = tableViewDataSource
+        
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items![0] as? UITabBarItem
         UITabBar.appearance().tintColor = UIColor.redColor()
-        
         
         searchBar.delegate = self        
         view.bringSubviewToFront(searchBar)
@@ -82,7 +84,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
         loadBoxOffice = (item.tag == 0)
+        
         searchBar.text = ""
+        tableViewDataSource?.searchText = ""
+        
         load()
     }
     
@@ -113,52 +118,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering, let filteredMovies = filteredMovies {
-            return filteredMovies.count
-        }
-        
-        if let movies = movies {
-            return movies.count
-        }
-        return 0
-    }
-    
-    func getMovie(atIndex: Int) -> NSDictionary? {
-        if isFiltering, let filteredMovies = filteredMovies {
-            return filteredMovies[atIndex]
-        } else if let movies = movies {
-            return movies[atIndex]
-        }
-        return nil
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
-
-        let movie = getMovie(indexPath.row)!
-        
-        cell.titleLabel.text = movie["title"] as? String
-        cell.synopsisLabel.text = movie["synopsis"] as? String
-        
-        let url = NSURL(string: movie.valueForKeyPath("posters.thumbnail") as! String)!
-        var urlRequest = NSURLRequest(URL: url)
-        cell.posterImageView.image = nil
-
-        cell.posterImageView.setImageWithURLRequest(urlRequest, placeholderImage: nil, success: { (request: NSURLRequest!, response: NSURLResponse!, image: UIImage!) -> Void in
-            
-            let fromCache = (request == nil)
-            if (fromCache) {
-                cell.posterImageView.image = image
-            } else {
-                UIView.transitionWithView(cell.posterImageView, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                    cell.posterImageView.image = image
-                }, completion: nil)
-            }
-            
-        }, failure: nil)
-        return cell
-    }
+    // MARK: UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -169,19 +129,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        filterMovies(searchText)
-    }
-    
-    func filterMovies(searchText: String) {
-        filteredMovies = movies?.filter({ (movie) -> Bool in
-            if let title = movie["title"] as? String {
-                if let range = title.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) {
-                    return true
-                }
-            }
-            return false
+        tableViewDataSource?.searchText = searchText
+        tableViewDataSource?.filterMovies({
+            self.tableView.reloadData()
         })
-        tableView.reloadData()
     }
 
     // MARK: - Navigation
@@ -190,7 +141,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!
-        let movie = getMovie(indexPath.row)
+        let movie = tableViewDataSource?.getMovie(indexPath.row)
         
         let movieDetailsViewController = segue.destinationViewController as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
