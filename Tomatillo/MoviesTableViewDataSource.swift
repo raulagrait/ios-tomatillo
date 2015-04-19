@@ -18,15 +18,15 @@ class MoviesTableViewDataSource: BaseMoviesDataSource, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
-        let movie = getMovie(indexPath.row)!
-        
-        cell.titleLabel.text = movie["title"] as? String
-        cell.synopsisLabel.text = movie["synopsis"] as? String
-        
-        let url = NSURL(string: movie.valueForKeyPath("posters.thumbnail") as! String)!
+        let movieData = getMovieData(indexPath.row)
+        cell.titleLabel.text = movieData[MovieDataKey.Title]
+        cell.synopsisLabel.text = movieData[MovieDataKey.Synopsis]
+
+        let urlString = movieData[MovieDataKey.UrlString]!
+        let url = NSURL(string: urlString)!
         var urlRequest = NSURLRequest(URL: url)
-        cell.posterImageView.image = nil
         
+        cell.posterImageView.image = nil        
         cell.posterImageView.setImageWithURLRequest(urlRequest, placeholderImage: nil, success: { (request: NSURLRequest!, response: NSURLResponse!, image: UIImage!) -> Void in
             
             let fromCache = (request == nil)

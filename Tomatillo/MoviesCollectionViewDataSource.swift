@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 class MoviesCollectionViewDataSource: BaseMoviesDataSource, UICollectionViewDataSource {
+    
+    class var reuseIdentifier: String {
+        get { return "MovieCollectionCell" }
+    }
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -19,9 +24,8 @@ class MoviesCollectionViewDataSource: BaseMoviesDataSource, UICollectionViewData
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MoviesCollectionViewDataSource.reuseIdentifier, forIndexPath: indexPath) as! MovieCollectionCell
         cell.backgroundColor = UIColor.purpleColor()
         return cell
     }
-
 }

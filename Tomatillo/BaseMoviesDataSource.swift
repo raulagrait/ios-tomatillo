@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum MovieDataKey {
+    case Title
+    case Synopsis
+    case UrlString
+}
+
 class BaseMoviesDataSource: NSObject {
     
     var searchText: String = ""
@@ -18,6 +24,20 @@ class BaseMoviesDataSource: NSObject {
     
     var filteredMovies: [NSDictionary]?
     var movies: [NSDictionary]?
+
+    func getMovieData(index: Int) -> [MovieDataKey: String] {
+        let movie = getMovie(index)!
+        let title = movie["title"] as! String
+        let synopsis = movie["synopsis"] as! String
+        let urlString = movie.valueForKeyPath("posters.thumbnail") as! String
+        
+        let data: [MovieDataKey: String] = [
+            MovieDataKey.Title: title,
+            MovieDataKey.Synopsis:  synopsis,
+            MovieDataKey.UrlString: urlString
+        ]
+        return data
+    }
     
     func getMovie(atIndex: Int) -> NSDictionary? {
         if isFiltering, let filteredMovies = filteredMovies {
