@@ -18,19 +18,17 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
     var tableViewDataSource: MoviesTableViewDataSource?
     
     var movies: [NSDictionary]? {
-        didSet {
-            tableViewDataSource?.movies = movies
-        }
+        didSet { tableViewDataSource?.movies = movies }
     }
 
     var filteredMovies: [NSDictionary]? {
-        didSet {
-            tableViewDataSource?.filteredMovies = filteredMovies
-        }
+        didSet { tableViewDataSource?.filteredMovies = filteredMovies }
     }
     
     var refreshControl: UIRefreshControl!
     var loadBoxOffice: Bool = true
+    
+    // MARK: UIViewController
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -66,6 +64,13 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
         load()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Data loading
+    
     func load() {
         tableView.hidden = true
         SVProgressHUD.show()
@@ -74,21 +79,6 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
             self.tableView.hidden = false
             SVProgressHUD.dismiss()
         })
-    }
-    
-    func reload() {
-        loadMovies({
-            self.refreshControl.endRefreshing()
-        })
-    }
-    
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        loadBoxOffice = (item.tag == 0)
-        
-        searchBar.text = ""
-        tableViewDataSource?.searchText = ""
-        
-        load()
     }
     
     func loadMovies(callback: () -> Void) {
@@ -112,10 +102,15 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
             callback()
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: UITabBar
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        searchBar.text = ""
+        tableViewDataSource?.searchText = ""
+        
+        loadBoxOffice = (item.tag == 0)
+        load()
     }
     
     // MARK: UITableViewDelegate
@@ -124,14 +119,22 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func onRefresh() {
-        reload()
-    }
+    // MARK: Refresh control
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         tableViewDataSource?.searchText = searchText
         tableViewDataSource?.filterMovies({
             self.tableView.reloadData()
+        })
+    }
+    
+    func onRefresh() {
+        reload()
+    }
+    
+    func reload() {
+        loadMovies({
+            self.refreshControl.endRefreshing()
         })
     }
 
