@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDelegate, UISearchBarDelegate {
+class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -16,6 +16,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
     @IBOutlet weak var tabBar: UITabBar!
     
     var tableViewDataSource: MoviesTableViewDataSource?
+    var tableViewDelegate: MoviesTableViewDelegate?
     
     var movies: [NSDictionary]? {
         didSet { tableViewDataSource?.movies = movies }
@@ -46,10 +47,12 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
         // I tried for way too long to try to do this in IB
         view.bringSubviewToFront(self.errorView)
         
-        tableViewDataSource = MoviesTableViewDataSource()
-        tableView.delegate = self
+        tableViewDataSource = MoviesTableViewDataSource()        
         tableView.dataSource = tableViewDataSource
         
+        tableViewDelegate = MoviesTableViewDelegate()
+        tableView.delegate = tableViewDelegate
+ 
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items![0] as? UITabBarItem
         UITabBar.appearance().tintColor = UIColor.redColor()
@@ -112,13 +115,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITabBarDeleg
         loadBoxOffice = (item.tag == 0)
         load()
     }
-    
-    // MARK: UITableViewDelegate
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
+
     // MARK: Refresh control
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
