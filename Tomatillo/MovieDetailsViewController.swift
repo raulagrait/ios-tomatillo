@@ -40,7 +40,7 @@ class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
 
         titleLabel.text = movieTitle
         synopsisLabel.text = movie["synopsis"] as? String
-        loadLowResImage()
+        backgroundImageView.setMultipleUrls(firstString: lowResUrlString, secondString: highResUrlString)
         
         var margin = titleLabel.frame.minX
         var titleHeight = titleLabel.frame.height
@@ -56,35 +56,7 @@ class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
         scrollView.clipsToBounds = true
         initialScrollY = scrollView.frame.minY
     }
-    
-    func loadLowResImage() {
-        let urlString = lowResUrlString
-        loadImage(urlString, callback: {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.loadHighResImage()
-            })
-        })
-    }
-    
-    func loadHighResImage() {
-        let urlString = highResUrlString
-        loadImage(urlString, callback: {})
-    }
-    
-    func loadImage(urlString: String, callback: () -> Void) {
-        let url = NSURL(string: urlString)!
-        let urlRequest = NSURLRequest(URL: url)
 
-        self.backgroundImageView.setImageWithURLRequest(urlRequest, placeholderImage: nil,
-            success: { (request: NSURLRequest!, response: NSURLResponse!, image: UIImage!) -> Void in
-                self.backgroundImageView.image = image
-                callback()
-            },
-            failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-                println(error)
-        })
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

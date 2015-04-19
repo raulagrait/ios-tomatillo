@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tomatillo/MovieDetailsViewController.swift"
-            timestampString = "451074626.980529"
+            timestampString = "451180288.89736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "MovieDetailsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tomatillo/MovieDetailsViewController.swift"
-            timestampString = "451074626.980529"
+            timestampString = "451180288.89736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "didReceiveMemoryWarning()"
             landmarkType = "5">
          </BreakpointContent>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tomatillo/MovieDetailsViewController.swift"
-            timestampString = "451074626.980529"
+            timestampString = "451180288.89736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104">
+            startingLineNumber = "76"
+            endingLineNumber = "76">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tomatillo/MovieDetailsViewController.swift"
-            timestampString = "451074626.980529"
+            timestampString = "451180288.89736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "MovieDetailsViewController"
             landmarkType = "3">
          </BreakpointContent>
