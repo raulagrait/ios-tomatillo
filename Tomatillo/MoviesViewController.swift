@@ -14,16 +14,25 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var gridView: UICollectionView!
     
     var tableViewDataSource: MoviesTableViewDataSource?
-    var tableViewDelegate: MoviesTableViewDelegate?
+    var gridViewDataSource: MoviesCollectionViewDataSource?
     
+    var tableViewDelegate: MoviesTableViewDelegate?
+
     var movies: [NSDictionary]? {
-        didSet { tableViewDataSource?.movies = movies }
+        didSet {
+            tableViewDataSource?.movies = movies
+            gridViewDataSource?.movies = movies
+        }
     }
 
     var filteredMovies: [NSDictionary]? {
-        didSet { tableViewDataSource?.filteredMovies = filteredMovies }
+        didSet {
+            tableViewDataSource?.filteredMovies = filteredMovies
+            gridViewDataSource?.filteredMovies = filteredMovies
+        }
     }
     
     var refreshControl: UIRefreshControl!
@@ -52,7 +61,11 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
         
         tableViewDelegate = MoviesTableViewDelegate()
         tableView.delegate = tableViewDelegate
- 
+
+        gridView.hidden = true
+        gridViewDataSource = MoviesCollectionViewDataSource()
+        gridView.dataSource = gridViewDataSource
+
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items![0] as? UITabBarItem
         UITabBar.appearance().tintColor = UIColor.redColor()
@@ -99,18 +112,23 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
                 self.errorView.hidden = true
                 if let json = json {
                     self.movies = json["movies"] as? [NSDictionary]
-                    self.tableView.reloadData()
+                    self.reloadData()
                 }
             }
             callback()
         }
     }
     
+    func reloadData() {
+        tableView.reloadData()
+        gridView.reloadData()
+    }
+    
     // MARK: UITabBar
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
         searchBar.text = ""
-        tableViewDataSource?.searchText = ""
+        setSearchText("")
         
         loadBoxOffice = (item.tag == 0)
         load()
@@ -119,10 +137,20 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
     // MARK: Refresh control
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        tableViewDataSource?.searchText = searchText
+        setSearchText(searchText)
+        
         tableViewDataSource?.filterMovies({
             self.tableView.reloadData()
         })
+        
+        gridViewDataSource?.filterMovies({
+            self.gridView.reloadData()
+        })
+    }
+    
+    func setSearchText(searchText: String) {
+        tableViewDataSource?.searchText = searchText
+        gridViewDataSource?.searchText = searchText
     }
     
     func onRefresh() {
@@ -139,11 +167,18 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPathForCell(cell)!
-        let movie = tableViewDataSource?.getMovie(indexPath.row)
         
-        let movieDetailsViewController = segue.destinationViewController as! MovieDetailsViewController
-        movieDetailsViewController.movie = movie
+        var indexPath: NSIndexPath?
+        if let tableCell = sender as? UITableViewCell {
+            indexPath = tableView.indexPathForCell(tableCell)
+        } else if let gridCell = sender as? UICollectionViewCell {
+            indexPath = gridView.indexPathForCell(gridCell)
+        }
+        
+        if let indexPath = indexPath {
+            let movie = tableViewDataSource?.getMovie(indexPath.row)
+            let movieDetailsViewController = segue.destinationViewController as! MovieDetailsViewController
+            movieDetailsViewController.movie = movie
+        }
     }
 }

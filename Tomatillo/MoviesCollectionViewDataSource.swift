@@ -32,6 +32,8 @@ class MoviesCollectionViewDataSource: BaseMoviesDataSource, UICollectionViewData
         let url = NSURL(string: urlString)!
         
         cell.posterImageView?.setImageWithURL(url)
+        cell.titleLabel.text = movieData[MovieDataKey.Title]
+        
         return cell
     }
 }
