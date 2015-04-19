@@ -24,8 +24,14 @@ class MoviesCollectionViewDataSource: BaseMoviesDataSource, UICollectionViewData
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MoviesCollectionViewDataSource.reuseIdentifier, forIndexPath: indexPath) as! MovieCollectionCell
-        cell.backgroundColor = UIColor.purpleColor()
+        let reuseId = MoviesCollectionViewDataSource.reuseIdentifier
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseId, forIndexPath: indexPath) as! MovieCollectionCell
+        
+        let movieData = getMovieData(indexPath.row)
+        let urlString = movieData[MovieDataKey.UrlString]!
+        let url = NSURL(string: urlString)!
+        
+        cell.posterImageView?.setImageWithURL(url)
         return cell
     }
 }
