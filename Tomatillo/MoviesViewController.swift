@@ -15,6 +15,7 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var gridView: UICollectionView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var tableViewDataSource: MoviesTableViewDataSource?
     var gridViewDataSource: MoviesCollectionViewDataSource?
@@ -89,10 +90,12 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
     
     func load() {
         tableView.hidden = true
+        gridView.hidden = true
+        
         SVProgressHUD.show()
         
         loadMovies({
-            self.tableView.hidden = false
+            self.updateVisibility()
             SVProgressHUD.dismiss()
         })
     }
@@ -163,6 +166,20 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
         })
     }
 
+    // MARK: - Segmented Control
+    
+    @IBAction func onSegmentedControlValueChanged(sender: AnyObject) {
+        updateVisibility()
+    }
+    
+    func updateVisibility() {
+        var index = segmentedControl.selectedSegmentIndex
+        var listVisible = (index == 0)
+        
+        tableView.hidden = !listVisible
+        gridView.hidden = listVisible
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

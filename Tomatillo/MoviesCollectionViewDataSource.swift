@@ -31,6 +31,7 @@ class MoviesCollectionViewDataSource: BaseMoviesDataSource, UICollectionViewData
         let lowResUrlString = movieData[MovieDataKey.LowResUrlString]!
         let highResUrlString = movieData[MovieDataKey.HighResUrlString]!
 
+        cell.posterImageView.image = nil
         cell.posterImageView?.setMultipleUrls(firstString: lowResUrlString, secondString: highResUrlString)
         cell.titleLabel.text = movieData[MovieDataKey.Title]
         

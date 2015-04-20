@@ -23,6 +23,8 @@
 		5554FEAE1AE4566100E8123F /* BaseMoviesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5554FEAD1AE4566100E8123F /* BaseMoviesDataSource.swift */; };
 		5554FEB01AE4588100E8123F /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5554FEAF1AE4588100E8123F /* MovieCollectionCell.swift */; };
 		5554FEB51AE4746300E8123F /* UIImageView+Multiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5554FEB41AE4746300E8123F /* UIImageView+Multiple.swift */; };
+		5554FEB81AE4BC9A00E8123F /* listicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5554FEB61AE4BC9A00E8123F /* listicon.png */; };
+		5554FEB91AE4BC9A00E8123F /* gridicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5554FEB71AE4BC9A00E8123F /* gridicon.png */; };
 		5586BBF51AE42D77002A02E0 /* MoviesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF41AE42D77002A02E0 /* MoviesTableViewDataSource.swift */; };
 		5586BBF81AE453FB002A02E0 /* MoviesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */; };
 		5586BBFA1AE45532002A02E0 /* MoviesCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF91AE45532002A02E0 /* MoviesCollectionViewDataSource.swift */; };
@@ -63,6 +65,8 @@
 		5554FEAD1AE4566100E8123F /* BaseMoviesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMoviesDataSource.swift; sourceTree = "<group>"; };
 		5554FEAF1AE4588100E8123F /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionCell.swift; sourceTree = "<group>"; };
 		5554FEB41AE4746300E8123F /* UIImageView+Multiple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Multiple.swift"; sourceTree = "<group>"; };
+		5554FEB61AE4BC9A00E8123F /* listicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listicon.png; sourceTree = "<group>"; };
+		5554FEB71AE4BC9A00E8123F /* gridicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridicon.png; sourceTree = "<group>"; };
 		5586BBF41AE42D77002A02E0 /* MoviesTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDataSource.swift; sourceTree = "<group>"; };
 		5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDelegate.swift; sourceTree = "<group>"; };
 		5586BBF91AE45532002A02E0 /* MoviesCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		550C5E2D1ADF1FE6008AC101 /* Tomatillo */ = {
 			isa = PBXGroup;
 			children = (
+				5554FEB61AE4BC9A00E8123F /* listicon.png */,
+				5554FEB71AE4BC9A00E8123F /* gridicon.png */,
 				550C5E301ADF1FE6008AC101 /* AppDelegate.swift */,
 				5520E4CB1AE0B7FD00814963 /* box-office-normal@2x.png */,
 				5520E4CC1AE0B7FD00814963 /* box-office-selected@2x.png */,
@@ -299,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5554FEB81AE4BC9A00E8123F /* listicon.png in Resources */,
 				550C5E361ADF1FE6008AC101 /* Main.storyboard in Resources */,
 				550C5E3B1ADF1FE6008AC101 /* LaunchScreen.xib in Resources */,
 				5520E4D01AE0B7FD00814963 /* box-office-selected@2x.png in Resources */,
@@ -306,6 +313,7 @@
 				5520E4CE1AE0B7FD00814963 /* dvd-selected@2x.png in Resources */,
 				5520E4CF1AE0B7FD00814963 /* box-office-normal@2x.png in Resources */,
 				550C5E381ADF1FE6008AC101 /* Images.xcassets in Resources */,
+				5554FEB91AE4BC9A00E8123F /* gridicon.png in Resources */,
 				5520E48D1ADFA7C000814963 /* iconmonstr-warning-5-icon-256.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

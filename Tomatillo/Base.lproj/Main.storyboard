@@ -105,6 +105,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YtF-Yl-ep8">
                                                     <rect key="frame" x="14" y="8" width="106" height="127"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="0.52904040399999996" green="0.52904040399999996" blue="0.52904040399999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -132,11 +133,25 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tomatillo" id="Dom-bS-ARy">
                         <barButtonItem key="backBarButtonItem" title="Back" id="8kA-1o-ObZ"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="FSR-Kc-4aI">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="6mX-Zd-mfE">
+                                <rect key="frame" x="-61" y="-14" width="71" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="" image="listicon.png"/>
+                                    <segment title="" image="gridicon.png"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onSegmentedControlValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="btM-7j-ZbO"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="errorView" destination="I9M-Uf-EnS" id="vX7-0e-lS4"/>
                         <outlet property="gridView" destination="Y5V-OV-hN3" id="hML-Pk-VYG"/>
                         <outlet property="searchBar" destination="Z6w-2d-eKh" id="ptu-8F-T3l"/>
+                        <outlet property="segmentedControl" destination="6mX-Zd-mfE" id="rVL-7A-VCQ"/>
                         <outlet property="tabBar" destination="TxT-M0-gkc" id="8To-XI-Jjw"/>
                         <outlet property="tableView" destination="qis-vJ-hCb" id="hhX-jV-uah"/>
                     </connections>
@@ -216,7 +231,9 @@
     <resources>
         <image name="box-office-normal.png" width="30" height="30"/>
         <image name="dvd-normal.png" width="30" height="30"/>
+        <image name="gridicon.png" width="30" height="30"/>
         <image name="iconmonstr-warning-5-icon-256.png" width="256" height="256"/>
+        <image name="listicon.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
