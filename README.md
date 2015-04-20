@@ -26,7 +26,7 @@ Time spent: `15 hours`
 
 
 ### Walkthrough
-![Video Walkthrough]()
+![Video Walkthrough](tomatillo.gif)
 
 Credits
 ---------
