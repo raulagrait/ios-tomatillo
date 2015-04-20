@@ -28,6 +28,7 @@
 		5586BBF51AE42D77002A02E0 /* MoviesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF41AE42D77002A02E0 /* MoviesTableViewDataSource.swift */; };
 		5586BBF81AE453FB002A02E0 /* MoviesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */; };
 		5586BBFA1AE45532002A02E0 /* MoviesCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF91AE45532002A02E0 /* MoviesCollectionViewDataSource.swift */; };
+		55FA44ED1AE4C65300595333 /* tomatillo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 55FA44EC1AE4C65300595333 /* tomatillo.jpeg */; };
 		68B25A300D194210E42D3999 /* libPods-Tomatillo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B94C799884F5F207EEFE8D93 /* libPods-Tomatillo.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		5586BBF41AE42D77002A02E0 /* MoviesTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDataSource.swift; sourceTree = "<group>"; };
 		5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDelegate.swift; sourceTree = "<group>"; };
 		5586BBF91AE45532002A02E0 /* MoviesCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		55FA44EC1AE4C65300595333 /* tomatillo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tomatillo.jpeg; sourceTree = "<group>"; };
 		B94C799884F5F207EEFE8D93 /* libPods-Tomatillo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tomatillo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,17 +126,11 @@
 		550C5E2D1ADF1FE6008AC101 /* Tomatillo */ = {
 			isa = PBXGroup;
 			children = (
-				5554FEB61AE4BC9A00E8123F /* listicon.png */,
-				5554FEB71AE4BC9A00E8123F /* gridicon.png */,
+				55FA44EB1AE4C60100595333 /* Assets */,
 				550C5E301ADF1FE6008AC101 /* AppDelegate.swift */,
-				5520E4CB1AE0B7FD00814963 /* box-office-normal@2x.png */,
-				5520E4CC1AE0B7FD00814963 /* box-office-selected@2x.png */,
 				5586BBF31AE42D2D002A02E0 /* DataSources */,
 				5586BBF61AE453E9002A02E0 /* Delegates */,
-				5520E4C91AE0B7FD00814963 /* dvd-normal@2x.png */,
-				5520E4CA1AE0B7FD00814963 /* dvd-selected@2x.png */,
 				5554FEB31AE4744F00E8123F /* Extensions */,
-				5520E48C1ADFA7C000814963 /* iconmonstr-warning-5-icon-256.png */,
 				550C5E371ADF1FE6008AC101 /* Images.xcassets */,
 				550C5E391ADF1FE6008AC101 /* LaunchScreen.xib */,
 				550C5E341ADF1FE6008AC101 /* Main.storyboard */,
@@ -213,6 +209,21 @@
 				5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */,
 			);
 			name = Delegates;
+			sourceTree = "<group>";
+		};
+		55FA44EB1AE4C60100595333 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				55FA44EC1AE4C65300595333 /* tomatillo.jpeg */,
+				5520E4CB1AE0B7FD00814963 /* box-office-normal@2x.png */,
+				5520E4CC1AE0B7FD00814963 /* box-office-selected@2x.png */,
+				5520E4C91AE0B7FD00814963 /* dvd-normal@2x.png */,
+				5520E4CA1AE0B7FD00814963 /* dvd-selected@2x.png */,
+				5554FEB71AE4BC9A00E8123F /* gridicon.png */,
+				5520E48C1ADFA7C000814963 /* iconmonstr-warning-5-icon-256.png */,
+				5554FEB61AE4BC9A00E8123F /* listicon.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		D5DB0D7548E52E91E54CB494 /* Frameworks */ = {
@@ -305,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55FA44ED1AE4C65300595333 /* tomatillo.jpeg in Resources */,
 				5554FEB81AE4BC9A00E8123F /* listicon.png in Resources */,
 				550C5E361ADF1FE6008AC101 /* Main.storyboard in Resources */,
 				550C5E3B1ADF1FE6008AC101 /* LaunchScreen.xib in Resources */,

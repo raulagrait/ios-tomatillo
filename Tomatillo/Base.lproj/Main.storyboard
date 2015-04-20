@@ -171,6 +171,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c96-PQ-m1W">
                                 <rect key="frame" x="0.0" y="63" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.52904040399999996" green="0.52904040399999996" blue="0.52904040399999996" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" id="Iah-7k-P0h" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="264" width="320" height="304"/>
