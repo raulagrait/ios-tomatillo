@@ -28,10 +28,10 @@ class MoviesCollectionViewDataSource: BaseMoviesDataSource, UICollectionViewData
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseId, forIndexPath: indexPath) as! MovieCollectionCell
         
         let movieData = getMovieData(indexPath.row)
-        let urlString = movieData[MovieDataKey.UrlString]!
-        let url = NSURL(string: urlString)!
-        
-        cell.posterImageView?.setImageWithURL(url)
+        let lowResUrlString = movieData[MovieDataKey.LowResUrlString]!
+        let highResUrlString = movieData[MovieDataKey.HighResUrlString]!
+
+        cell.posterImageView?.setMultipleUrls(firstString: lowResUrlString, secondString: highResUrlString)
         cell.titleLabel.text = movieData[MovieDataKey.Title]
         
         return cell

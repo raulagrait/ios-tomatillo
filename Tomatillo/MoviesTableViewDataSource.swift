@@ -22,7 +22,7 @@ class MoviesTableViewDataSource: BaseMoviesDataSource, UITableViewDataSource {
         cell.titleLabel.text = movieData[MovieDataKey.Title]
         cell.synopsisLabel.text = movieData[MovieDataKey.Synopsis]
 
-        let urlString = movieData[MovieDataKey.UrlString]!
+        let urlString = movieData[MovieDataKey.LowResUrlString]!
         let url = NSURL(string: urlString)!
         var urlRequest = NSURLRequest(URL: url)
         

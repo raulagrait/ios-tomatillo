@@ -12,7 +12,8 @@ import UIKit
 enum MovieDataKey {
     case Title
     case Synopsis
-    case UrlString
+    case LowResUrlString
+    case HighResUrlString
 }
 
 class BaseMoviesDataSource: NSObject {
@@ -29,12 +30,14 @@ class BaseMoviesDataSource: NSObject {
         let movie = getMovie(index)!
         let title = movie["title"] as! String
         let synopsis = movie["synopsis"] as! String
-        let urlString = movie.valueForKeyPath("posters.thumbnail") as! String
+        let lowResUrlString = movie.valueForKeyPath("posters.thumbnail") as! String
+        let highResUrlString = getHighResUrlString(from: lowResUrlString)
         
         let data: [MovieDataKey: String] = [
             MovieDataKey.Title: title,
             MovieDataKey.Synopsis:  synopsis,
-            MovieDataKey.UrlString: urlString
+            MovieDataKey.LowResUrlString: lowResUrlString,
+            MovieDataKey.HighResUrlString: highResUrlString
         ]
         return data
     }
@@ -70,4 +73,13 @@ class BaseMoviesDataSource: NSObject {
         }
         return 0
     }
+    
+    func getHighResUrlString(from lowResUrlString: String) -> String {
+        var urlString = lowResUrlString
+        if let range = lowResUrlString.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch) {
+            urlString = urlString.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
+        }
+        return urlString
+    }
 }
+
