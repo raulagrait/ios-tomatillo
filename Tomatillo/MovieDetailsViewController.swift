@@ -42,14 +42,14 @@ class MovieDetailsViewController: UIViewController, UIScrollViewDelegate {
         synopsisLabel.text = movie["synopsis"] as? String
         backgroundImageView.setMultipleUrls(firstString: lowResUrlString, secondString: highResUrlString)
         
-        var margin = titleLabel.frame.minX
+        var margins = CGFloat(10.0 * 4.0)
+        var imageHeight = backgroundImageView.frame.height
         var titleHeight = titleLabel.frame.height
-        
         var synopsisFrame = synopsisLabel.frame
         synopsisLabel.frame = CGRect(x: synopsisFrame.minX, y: synopsisFrame.minY, width: synopsisFrame.width, height: 0)
         synopsisLabel.sizeToFit()
         var synopsisHeight = synopsisLabel.frame.height
-        var contentHeight = margin + titleHeight + margin + synopsisHeight + margin
+        var contentHeight = margins + imageHeight + titleHeight + synopsisHeight
         scrollView.contentSize.height = contentHeight
         
         scrollView.delegate = self

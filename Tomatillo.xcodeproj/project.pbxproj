@@ -25,6 +25,8 @@
 		5554FEB51AE4746300E8123F /* UIImageView+Multiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5554FEB41AE4746300E8123F /* UIImageView+Multiple.swift */; };
 		5554FEB81AE4BC9A00E8123F /* listicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5554FEB61AE4BC9A00E8123F /* listicon.png */; };
 		5554FEB91AE4BC9A00E8123F /* gridicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5554FEB71AE4BC9A00E8123F /* gridicon.png */; };
+		555F40691AE5FD5D00884634 /* TestBoxOffice.json in Resources */ = {isa = PBXBuildFile; fileRef = 555F40681AE5FD5D00884634 /* TestBoxOffice.json */; };
+		555F406B1AE60F8F00884634 /* TestDVD.json in Resources */ = {isa = PBXBuildFile; fileRef = 555F406A1AE60F8F00884634 /* TestDVD.json */; };
 		5586BBF51AE42D77002A02E0 /* MoviesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF41AE42D77002A02E0 /* MoviesTableViewDataSource.swift */; };
 		5586BBF81AE453FB002A02E0 /* MoviesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */; };
 		5586BBFA1AE45532002A02E0 /* MoviesCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586BBF91AE45532002A02E0 /* MoviesCollectionViewDataSource.swift */; };
@@ -68,6 +70,8 @@
 		5554FEB41AE4746300E8123F /* UIImageView+Multiple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Multiple.swift"; sourceTree = "<group>"; };
 		5554FEB61AE4BC9A00E8123F /* listicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listicon.png; sourceTree = "<group>"; };
 		5554FEB71AE4BC9A00E8123F /* gridicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridicon.png; sourceTree = "<group>"; };
+		555F40681AE5FD5D00884634 /* TestBoxOffice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestBoxOffice.json; sourceTree = "<group>"; };
+		555F406A1AE60F8F00884634 /* TestDVD.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestDVD.json; sourceTree = "<group>"; };
 		5586BBF41AE42D77002A02E0 /* MoviesTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDataSource.swift; sourceTree = "<group>"; };
 		5586BBF71AE453FB002A02E0 /* MoviesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDelegate.swift; sourceTree = "<group>"; };
 		5586BBF91AE45532002A02E0 /* MoviesCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				5535E5D31ADF431C00A8355C /* Tomatillo-Bridging-Header.h */,
 				550C5E501ADF247C008AC101 /* View Controllers */,
 				5535E5D01ADF38F800A8355C /* Views */,
+				555F40681AE5FD5D00884634 /* TestBoxOffice.json */,
+				555F406A1AE60F8F00884634 /* TestDVD.json */,
 			);
 			path = Tomatillo;
 			sourceTree = "<group>";
@@ -322,7 +328,9 @@
 				550C5E3B1ADF1FE6008AC101 /* LaunchScreen.xib in Resources */,
 				5520E4D01AE0B7FD00814963 /* box-office-selected@2x.png in Resources */,
 				5520E4CD1AE0B7FD00814963 /* dvd-normal@2x.png in Resources */,
+				555F406B1AE60F8F00884634 /* TestDVD.json in Resources */,
 				5520E4CE1AE0B7FD00814963 /* dvd-selected@2x.png in Resources */,
+				555F40691AE5FD5D00884634 /* TestBoxOffice.json in Resources */,
 				5520E4CF1AE0B7FD00814963 /* box-office-normal@2x.png in Resources */,
 				550C5E381ADF1FE6008AC101 /* Images.xcassets in Resources */,
 				5554FEB91AE4BC9A00E8123F /* gridicon.png in Resources */,
