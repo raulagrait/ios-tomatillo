@@ -111,11 +111,13 @@ class MoviesViewController: UIViewController, UITabBarDelegate, UISearchBarDeleg
             if (error != nil) {
                 self.errorView.hidden = false
             } else {
-                let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-                self.errorView.hidden = true
-                if let json = json {
+                println(data)
+                if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary {
+                    self.errorView.hidden = true
                     self.movies = json["movies"] as? [NSDictionary]
                     self.reloadData()
+                } else {
+                    self.errorView.hidden = false
                 }
             }
             callback()
